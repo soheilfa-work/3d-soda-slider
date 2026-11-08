@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FIZZ·LAB — 3D Soda Can Slider
 
-## Getting Started
+An interactive product showcase of classic 355 ml soda cans. Six flavours sit on a looping 3D wheel: scroll, drag, or use the arrow keys and the wheel springs to the next can, while the page colour, copy, and price follow the active flavour.
 
-First, run the development server:
+**Live demo:** [https://3d-soda-slider.vercel.app/](https://3d-soda-slider.vercel.app/)
+
+## Flavours
+
+| Flavour | Price | Energy |
+| --- | --- | --- |
+| Coca-Cola Classic | $1.99 | 140 kcal |
+| Coca-Cola Zero Sugar | $1.99 | 0 kcal |
+| Dr Pepper | $2.19 | 150 kcal |
+| Pepsi | $1.89 | 150 kcal |
+| Pepsi Zero Sugar | $1.89 | 0 kcal |
+| Sprite | $1.79 | 140 kcal |
+
+## How to use it
+
+- Scroll or swipe to step around the wheel
+- Drag left or right on the scene
+- Arrow keys move one flavour at a time
+- Click a can, or a dot under the wheel, to jump to that flavour
+- **Add to cart** increments the cart count in the header
+
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router)
+- React 19
+- [React Three Fiber](https://r3f.docs.pmnd.rs/) and [drei](https://github.com/pmndrs/drei)
+- [three.js](https://threejs.org)
+- Tailwind CSS 4
+
+The cans come from a single GLB. Each flavour is pulled out of that file, centred, and placed on a shared wheel. Wheel motion is a lightly under-damped spring, so the cans overshoot a little and settle.
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # production build
+npm run start   # serve the production build
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project layout
 
-## Learn More
+```
+app/                Next.js app shell and page
+components/
+  showcase.tsx      UI: copy, cart, dots, scroll / drag / keyboard
+  scene.tsx         React Three Fiber wheel, lighting, and can meshes
+lib/products.ts     Flavour data, colours, and wheel maths
+public/models/      Soda can GLB
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Credits
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3D model “Soda Cans – Classic 355ml” by Mark Peters, used under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
